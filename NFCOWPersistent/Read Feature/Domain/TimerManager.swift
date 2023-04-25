@@ -41,7 +41,7 @@ class TimerManager {
     
     func start() {
         
-        let date = TimerCoreDataManager().fetchTimerDate(dateString: "startTime") ?? Date()
+        let date = TimerCoreDataManager().fetchDate(key: "startTime") ?? Date()
         startTime = date
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             let elapsedTime = Date().timeIntervalSince(self.startTime!)
@@ -56,23 +56,21 @@ class TimerManager {
         timer?.invalidate()
         self.isRunning = false
         
-        TimerCoreDataManager().updateStatusRecord(status:false)
-        TimerCoreDataManager().updatePauseTimeRecord(pause:pauseTime ?? Date())
+        TimerCoreDataManager().updateBoolRecord(key: "isRunning", status:self.isRunning)
+        TimerCoreDataManager().updateTimeRecord(key: "pauseTime", date: pauseTime ?? Date())
+        
     }
     
     func resume(){
         
-        pauseInterval = TimerCoreDataManager().fetchTimerDate(dateString: "pauseTime")!.timeIntervalSince(TimerCoreDataManager().fetchTimerDate(dateString: "startTime")!)
+        pauseInterval = pausedIntervalCalc()
         
         self.startTime = Date().addingTimeInterval(-pauseInterval)
-        
-        
-        TimerCoreDataManager().updateStartTimeRecord(date: startTime ?? Date())
+        TimerCoreDataManager().updateTimeRecord(key:"startTime",date: startTime ?? Date())
         
         self.pauseTime = nil
         self.pauseInterval = 0
-        
-        TimerCoreDataManager().updatePauseAsNil()
+        TimerCoreDataManager().updateTimeRecord(key: "pauseTime", date: nil)
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             let elapsedTime = Date().timeIntervalSince(self.startTime!)
@@ -80,14 +78,13 @@ class TimerManager {
         }
         
         self.isRunning = true
-        TimerCoreDataManager().updateStatusRecord(status:self.isRunning)
+        TimerCoreDataManager().updateBoolRecord(key: "isRunning", status:self.isRunning)
     }
     
     func stop() {
         timer?.invalidate()
-        totalInterval = Date().timeIntervalSince(TimerCoreDataManager().fetchTimerDate(dateString: "startTime")!)
-        ProjectModel.sharedProject.projectC = TimerCoreDataManager().fetchTimerProject()
-        ProjectModel.sharedProject.projectN = TimerCoreDataManager().fetchTimerName()
+        totalInterval = Date().timeIntervalSince(TimerCoreDataManager().fetchDate(key: "startTime") ?? Date())
+        
         timer = nil
         startTime = nil
         pauseTime = nil
@@ -97,11 +94,16 @@ class TimerManager {
         
         if let sourceViewController = delegate as? UIViewController {
                    sourceViewController.performSegue(withIdentifier: "readToCompleteSegue", sender: nil)
+                
                } else {
                    print("Error: delegate is not a UIViewController")
                }
     }
     
+    func pausedIntervalCalc() -> TimeInterval{
+        let elapsedTime = (TimerCoreDataManager().fetchDate(key: "pauseTime") ?? Date()).timeIntervalSince(TimerCoreDataManager().fetchDate(key: "startTime") ?? Date() )
+        return elapsedTime
+    }
     func timeConversion(elapsedTime: TimeInterval)->String{
         let formatter = DateComponentsFormatter()
         //let formatter = DateFormatter()

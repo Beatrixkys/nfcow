@@ -112,6 +112,7 @@
                         <outlet property="projectLabel" destination="eBh-Jr-nS0" id="eYx-9G-PNZ"/>
                         <outlet property="timerView" destination="Joq-Sb-t4a" id="DHu-5w-Tdb"/>
                         <segue destination="9pY-px-RIj" kind="show" identifier="readToCompleteSegue" id="GG1-uX-6SH"/>
+                        <segue destination="hCA-kb-2zA" kind="show" identifier="showWriteSegue" id="nFo-vq-ZR4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FaV-5w-0KY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,6 +292,9 @@
             <point key="canvasLocation" x="1954.9618320610687" y="3.5211267605633805"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="qoh-cl-PQ8"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.55936509369999998" green="0.16154244540000001" blue="0.14507687089999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="edit" width="32" height="32"/>

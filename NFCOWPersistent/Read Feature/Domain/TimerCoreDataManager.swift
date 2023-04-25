@@ -12,6 +12,7 @@ class TimerCoreDataManager{
     static let shared = TimerCoreDataManager()
     let context: NSManagedObjectContext
     let appDelegate : AppDelegate
+    private let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
     
     
     init() {
@@ -36,6 +37,124 @@ class TimerCoreDataManager{
           }
         
     }
+    
+    
+    //to implement
+    
+    func updateTimeRecord(key: String, date: Date?){
+        //let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
+        //request.predicate = NSPredicate(format: "projectModel == %@ ", projectModel)
+        do {
+                    let result = try context.fetch(request)
+                    for data in result as? [NSManagedObject] ?? []
+                            //it is printing an entire array instead of one object
+        {
+                        data.setValue(date, forKey: key)
+          }
+               } catch {
+
+                   print("Failed Update")
+        }
+        
+    }
+    
+    func updateBoolRecord(key: String, status: Bool){
+        //let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
+        //request.predicate = NSPredicate(format: "projectModel == %@ ", projectModel)
+        do {
+                    let result = try context.fetch(request)
+                    for data in result as? [NSManagedObject] ?? []
+                            //it is printing an entire array instead of one object
+        {
+                        data.setValue(status, forKey: key)
+          }
+               } catch {
+
+                   print("Failed Update")
+        }
+        
+    }
+    
+    func fetchCoreTimer() -> NSManagedObject? {
+        //let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
+        request.returnsObjectsAsFaults = false
+        var resultFirst : NSManagedObject? = nil
+        do {
+            let result = try context.fetch(request)
+            resultFirst = result.first as? NSManagedObject ?? nil
+            print (result)
+            //return dateShow
+               } catch {
+
+                   print("Failed")
+        }
+        
+        return resultFirst
+    }
+    
+    
+    func fetchString(key:String) -> String {
+        //let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
+        
+        var data = ""
+        request.returnsObjectsAsFaults = false
+        do {
+                    let result = try context.fetch(request)
+            if let resultFirst = result.first as? NSManagedObject ?? nil{
+                data = resultFirst.value(forKey: key) as? String ?? ""
+            }
+           
+            //return dateShow
+               } catch {
+                   print("Failed Return Start Date")
+        }
+        return data
+    }
+    
+    func fetchDate( key:String) -> Date? {
+        //let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
+        //request.predicate = NSPredicate(format: "projectModel == %@", projectModel)
+        
+        var date = Date ()
+        request.returnsObjectsAsFaults = false
+        do {
+                    let result = try context.fetch(request)
+            let resultFirst = result.first as! NSManagedObject
+            date = resultFirst.value(forKey: key) as! Date
+            //return dateShow
+               } catch {
+                   print("Failed Return Start Date")
+        }
+        return date
+    }
+    
+    func fetchBool(key:String) -> Bool {
+        //let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
+        
+        var status = false
+        request.returnsObjectsAsFaults = false
+        do {
+                    let result = try context.fetch(request)
+            let resultFirst = result.first as! NSManagedObject
+            status = resultFirst.value(forKey: "isRunning") as? Bool ?? false
+            //return dateShow
+               } catch {
+
+                   print("Failed Return Status")
+        }
+        
+        return status
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    //todeprecate
+    /*
     
     func updateStartTimeRecord(date: Date){
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
@@ -107,6 +226,9 @@ class TimerCoreDataManager{
         
     }
     
+    
+    
+    
     //fetch functionality
     func fetchTimerExistence() -> NSManagedObject? {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
@@ -132,9 +254,10 @@ class TimerCoreDataManager{
         request.returnsObjectsAsFaults = false
         do {
                     let result = try context.fetch(request)
-            let resultFirst = result.first as! NSManagedObject
+            if let resultFirst = result.first as? NSManagedObject ?? nil{
+                projectModel = resultFirst.value(forKey: "projectModel") as? String ?? ""
+            }
            
-            projectModel = resultFirst.value(forKey: "projectModel") as! String
             //return dateShow
                } catch {
                    print("Failed Return Start Date")
@@ -198,7 +321,9 @@ class TimerCoreDataManager{
         return status
     }
     
+    */
     
+    //do not deprecate 
     func deleteTimerData(){
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TimeEntity")
         //request.predicate = NSPredicate(format: "projectModel = %@", projectModel)

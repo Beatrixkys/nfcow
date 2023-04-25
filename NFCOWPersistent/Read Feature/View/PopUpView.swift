@@ -26,12 +26,18 @@ struct PopUp{
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
-    
-    func wrongCard()->UIAlertController{
-        let alert = UIAlertController(title: "NFC Card is Invalid", message: "Please Use Correct Card", preferredStyle: UIAlertController.Style.alert)
+    func emptyCard()->UIAlertController{
+        let alert = UIAlertController(title: "NFC Card is Empty", message: "Do you want to add data to card?", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
+    
+    func wrongCard()->UIAlertController{
+        let alert = UIAlertController(title: "Another NFC Card Has Been Scanned", message: "Do you want to end the previous task and start a new one?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertAction.Style.default, handler: nil))
+        return alert
+    }
+   
     
     
     //actions
@@ -63,6 +69,8 @@ struct PopUp{
         )
         return stopAction
     }
+    
+    
     
   
     

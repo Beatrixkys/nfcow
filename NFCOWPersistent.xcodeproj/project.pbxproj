@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25B75DB529C2E68000472756 /* ReadNFCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B75DB429C2E68000472756 /* ReadNFCViewModel.swift */; };
+		25B75DBF29C2F7C000472756 /* WriteNFCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25B75DBE29C2F7C000472756 /* WriteNFCViewModel.swift */; };
 		25BE4D9B29B9BF2700A5EF28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4D9A29B9BF2700A5EF28 /* AppDelegate.swift */; };
 		25BE4D9D29B9BF2700A5EF28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4D9C29B9BF2700A5EF28 /* SceneDelegate.swift */; };
 		25BE4D9F29B9BF2700A5EF28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4D9E29B9BF2700A5EF28 /* ViewController.swift */; };
@@ -23,10 +25,12 @@
 		25BE4DC029B9C29800A5EF28 /* NFCReaderUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4DBF29B9C29800A5EF28 /* NFCReaderUtility.swift */; };
 		25BE4DC229B9C2B100A5EF28 /* NFCWriterUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4DC129B9C2B100A5EF28 /* NFCWriterUtility.swift */; };
 		25BE4DC429B9C2E900A5EF28 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4DC329B9C2E900A5EF28 /* PopUpView.swift */; };
-		25BE4DC629B9C4D800A5EF28 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4DC529B9C4D800A5EF28 /* CoreDataManager.swift */; };
+		25BE4DC629B9C4D800A5EF28 /* TimerCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BE4DC529B9C4D800A5EF28 /* TimerCoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25B75DB429C2E68000472756 /* ReadNFCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadNFCViewModel.swift; sourceTree = "<group>"; };
+		25B75DBE29C2F7C000472756 /* WriteNFCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteNFCViewModel.swift; sourceTree = "<group>"; };
 		25BE4D9729B9BF2700A5EF28 /* NFCOWPersistent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NFCOWPersistent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25BE4D9A29B9BF2700A5EF28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25BE4D9C29B9BF2700A5EF28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +49,7 @@
 		25BE4DBF29B9C29800A5EF28 /* NFCReaderUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCReaderUtility.swift; sourceTree = "<group>"; };
 		25BE4DC129B9C2B100A5EF28 /* NFCWriterUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCWriterUtility.swift; sourceTree = "<group>"; };
 		25BE4DC329B9C2E900A5EF28 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
-		25BE4DC529B9C4D800A5EF28 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		25BE4DC529B9C4D800A5EF28 /* TimerCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreDataManager.swift; sourceTree = "<group>"; };
 		25BE4DC729BAB19B00A5EF28 /* NFCOWPersistent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NFCOWPersistent.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +64,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25B75DB029C2E2E600472756 /* Read Feature */ = {
+			isa = PBXGroup;
+			children = (
+				25B75DB329C2E60F00472756 /* Domain */,
+				25B75DB229C2E50200472756 /* View */,
+			);
+			path = "Read Feature";
+			sourceTree = "<group>";
+		};
+		25B75DB129C2E33300472756 /* Write Feature */ = {
+			isa = PBXGroup;
+			children = (
+				25B75DBE29C2F7C000472756 /* WriteNFCViewModel.swift */,
+				25BE4DB329B9C14D00A5EF28 /* WriteNFCViewController.swift */,
+			);
+			path = "Write Feature";
+			sourceTree = "<group>";
+		};
+		25B75DB229C2E50200472756 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25B75DB429C2E68000472756 /* ReadNFCViewModel.swift */,
+				25BE4DB129B9C12600A5EF28 /* ReadNFCViewController.swift */,
+				25BE4DB529B9C19E00A5EF28 /* CompletionViewController.swift */,
+				25BE4DC329B9C2E900A5EF28 /* PopUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		25B75DB329C2E60F00472756 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				25BE4DC529B9C4D800A5EF28 /* TimerCoreDataManager.swift */,
+				25BE4DBB29B9C22800A5EF28 /* TimerManager.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		25BE4D8E29B9BF2700A5EF28 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +126,8 @@
 				25BE4D9C29B9BF2700A5EF28 /* SceneDelegate.swift */,
 				25BE4DA029B9BF2700A5EF28 /* Main.storyboard */,
 				25BE4DC929BB224400A5EF28 /* View Controller Group */,
+				25B75DB129C2E33300472756 /* Write Feature */,
+				25B75DB029C2E2E600472756 /* Read Feature */,
 				25BE4DCB29BB227B00A5EF28 /* Data Model */,
 				25BE4DCA29BB226000A5EF28 /* Shared Services */,
 				25BE4DA629B9BF2800A5EF28 /* Assets.xcassets */,
@@ -98,9 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				25BE4D9E29B9BF2700A5EF28 /* ViewController.swift */,
-				25BE4DB329B9C14D00A5EF28 /* WriteNFCViewController.swift */,
-				25BE4DB129B9C12600A5EF28 /* ReadNFCViewController.swift */,
-				25BE4DB529B9C19E00A5EF28 /* CompletionViewController.swift */,
 			);
 			path = "View Controller Group";
 			sourceTree = "<group>";
@@ -109,11 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				25BE4DB929B9C21100A5EF28 /* JSONManager.swift */,
-				25BE4DBB29B9C22800A5EF28 /* TimerManager.swift */,
-				25BE4DC529B9C4D800A5EF28 /* CoreDataManager.swift */,
 				25BE4DBF29B9C29800A5EF28 /* NFCReaderUtility.swift */,
 				25BE4DC129B9C2B100A5EF28 /* NFCWriterUtility.swift */,
-				25BE4DC329B9C2E900A5EF28 /* PopUpView.swift */,
 			);
 			path = "Shared Services";
 			sourceTree = "<group>";
@@ -197,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25B75DBF29C2F7C000472756 /* WriteNFCViewModel.swift in Sources */,
 				25BE4D9F29B9BF2700A5EF28 /* ViewController.swift in Sources */,
 				25BE4DC429B9C2E900A5EF28 /* PopUpView.swift in Sources */,
 				25BE4DBC29B9C22800A5EF28 /* TimerManager.swift in Sources */,
@@ -209,8 +248,9 @@
 				25BE4DB829B9C1BA00A5EF28 /* ProjectModel.swift in Sources */,
 				25BE4DB229B9C12600A5EF28 /* ReadNFCViewController.swift in Sources */,
 				25BE4DBA29B9C21100A5EF28 /* JSONManager.swift in Sources */,
-				25BE4DC629B9C4D800A5EF28 /* CoreDataManager.swift in Sources */,
+				25BE4DC629B9C4D800A5EF28 /* TimerCoreDataManager.swift in Sources */,
 				25BE4D9D29B9BF2700A5EF28 /* SceneDelegate.swift in Sources */,
+				25B75DB529C2E68000472756 /* ReadNFCViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +403,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 878T64ZC8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NFCOWPersistent/Info.plist;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "NFC Scan Is Needed to Read";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -396,6 +437,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 878T64ZC8F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NFCOWPersistent/Info.plist;
+				INFOPLIST_KEY_NFCReaderUsageDescription = "NFC Scan Is Needed to Read";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

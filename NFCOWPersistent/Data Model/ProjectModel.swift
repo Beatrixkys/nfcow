@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 class ProjectModel{
     
     static let sharedProject = ProjectModel()
@@ -24,6 +24,7 @@ class ProjectModel{
     
     
 }
+*/
 
 struct ProjectWriteModel{
 
